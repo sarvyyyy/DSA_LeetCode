@@ -1,24 +1,30 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int):
-        result =[0,0]
-        flag = False
-        first = False
-        second = False
-        for i in range(len(nums)):
-            if first == False:
-                if nums[i]==target:
-                    result[0] = i
-                    flag = True
-                    first = True
-            else:
-                if nums[i]==target:
-                    result[1] = i
-                    second = True
-            
-        if first == True and second == False:
-            result[1] = result[0]
-        if flag == False and first == False:
-            return[-1,-1]
-        
-        return result
-        
+        def findFirst():
+            idx = -1
+            left = 0
+            right = len(nums)-1
+            while right>=left:
+                mid = (right+left) // 2
+                if nums[mid]<=target:
+                    left = mid+1
+                else:
+                    right = mid-1
+                if nums[mid]==target:
+                    idx = mid
+            return idx
+
+        def findLast():
+            left = 0
+            idx = -1
+            right = len(nums)-1
+            while left<=right:
+                mid = (right+left) // 2
+                if nums[mid]>=target:
+                    right = mid-1
+                else:
+                    left = mid+1
+                if target == nums[mid]:
+                    idx = mid
+            return idx
+        return [findLast(), findFirst()]
