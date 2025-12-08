@@ -18,8 +18,7 @@ class Solution:
                     
                 if diff>0:
                     j+=1
-                    while j<k and nums[j]==nums[j-1]:
-                        j+=1
+                    
                 elif diff<0:
                     k-=1
                 else:
