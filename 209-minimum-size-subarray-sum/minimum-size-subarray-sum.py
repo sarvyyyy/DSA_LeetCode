@@ -10,6 +10,4 @@ class Solution:
                 s-=nums[left]
                 size = min(size, right-left+1)
                 left+=1
-        
         return 0 if size==float('inf') else size
-            
