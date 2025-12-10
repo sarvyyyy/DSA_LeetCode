@@ -2,9 +2,8 @@ class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]):
         s = 0
         size = float('inf')
-        n = len(nums)
         left=0
-        for right in range(n):
+        for right in range(len(nums)):
             s+=nums[right]
             while s>= target:
                 s-=nums[left]
