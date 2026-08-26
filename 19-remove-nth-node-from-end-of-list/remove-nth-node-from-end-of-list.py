@@ -11,10 +11,10 @@ class Solution:
         fast = dummy
         slow = dummy
 
-        count = 0
+        
         for i in range(n+1):
             fast = fast.next
-            count+=1
+            
 
         while fast:
             fast = fast.next
