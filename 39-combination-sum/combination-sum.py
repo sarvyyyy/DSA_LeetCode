@@ -5,13 +5,13 @@ class Solution:
             if total == target:
                 res.append(path.copy())
                 return
-            if total > target:
+            if total>target:
                 return
 
             for i in range(start, len(candidates)):
                 path.append(candidates[i])
-                backTrack(i, path, candidates[i] + total)
+                backTrack(i, path, total+candidates[i])
                 path.pop()
-
         backTrack(0, [], 0)
+
         return res
