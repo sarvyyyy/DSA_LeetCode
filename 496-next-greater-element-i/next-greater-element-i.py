@@ -1,19 +1,15 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        mp = {}
+        st = []
         res = []
-        for i in range(len(nums1)):
-            for j in range(len(nums2)):
-                if nums1[i] == nums2[j]:
-                    k = j+1
-                    found = False
-                    while k< len(nums2):
-                        if nums2[k]>nums1[i]:
-                            res.append(nums2[k])
-                            found = True
-                            break
-                        k+=1
-                    if not found:
-                        res.append(-1)
-                    break
-                                   
+        for nums in nums2:
+            while st and nums > st[-1]:
+                mp[st.pop()] = nums
+            st.append(nums)
+
+        while st:
+            mp[st.pop()] = -1
+        for i in nums1:
+            res.append(mp[i])
         return res
