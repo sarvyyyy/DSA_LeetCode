@@ -14,8 +14,6 @@ class Solution:
                         k+=1
                     if not found:
                         res.append(-1)
-                    
-                        
-                
-                        
+                    break
+                                   
         return res
