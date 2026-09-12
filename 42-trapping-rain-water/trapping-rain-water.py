@@ -1,29 +1,21 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        left = 0
-        right = len(height)-1
-        leftMax = 0
-        rightMax = 0
+        st = []
         water = 0
+        k = len(height)
+        for i in range(k):
+            while st and height[i]>height[st[-1]]:
+                floor = st.pop()
+                if not st:
+                    break
 
-        while left<=right:
-            if height[left] <= height[right]:
-                if height[left]>=leftMax:
-                    leftMax = height[left]
-                else:
-                    water += leftMax - height[left]
-
-                left+=1
-
-            else:
-                if height[right]>=rightMax:
-                    rightMax = height[right]
-                else:
-                    water += rightMax - height[right]
-
-                right-=1 
-
+                right = i
+                left = st[-1]
+                width = i - st[-1] - 1
+                min_boundary = min(height[i],height[st[-1]]) - height[floor]
+                water+= min_boundary*width
+            st.append(i)
+            
         return water
 
 
-        
